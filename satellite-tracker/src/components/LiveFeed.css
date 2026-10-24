@@ -1,0 +1,238 @@
+/* ─── Trigger button ─────────────────────────────────────── */
+.livefeed-trigger {
+  position: absolute;
+  bottom: 175px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(4, 10, 20, 0.82);
+  border: 0.5px solid rgba(56, 189, 248, 0.25);
+  border-radius: 2px;
+  padding: 8px 14px;
+  color: #38bdf8;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: border-color 0.2s;
+  z-index: 20;
+}
+
+.livefeed-trigger:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+}
+
+.livefeed-trigger--nearby {
+  border-color: rgba(74, 222, 128, 0.5);
+  color: #4ade80;
+  animation: nearby-pulse 2s ease-in-out infinite;
+}
+
+@keyframes nearby-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+  50%       { box-shadow: 0 0 0 6px rgba(74, 222, 128, 0.1); }
+}
+
+.livefeed-trigger-icon { font-size: 13px; }
+
+.livefeed-trigger-ping {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  animation: ping 1.5s ease-in-out infinite;
+}
+
+@keyframes ping {
+  0%   { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+/* ─── Main panel ─────────────────────────────────────────── */
+.livefeed-panel {
+  position: absolute;
+  bottom: 220px;
+  right: 24px;
+  width: 380px;
+  background: rgba(4, 10, 20, 0.92);
+  border: 0.5px solid rgba(56, 189, 248, 0.2);
+  border-radius: 2px;
+  backdrop-filter: blur(12px);
+  font-family: 'JetBrains Mono', monospace;
+  z-index: 20;
+  overflow: hidden;
+}
+
+/* ─── Header ─────────────────────────────────────────────── */
+.livefeed-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 0.5px solid rgba(56, 189, 248, 0.1);
+}
+
+.livefeed-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  color: #e2e8f0;
+}
+
+.livefeed-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #f87171;
+  animation: live-blink 1.2s ease-in-out infinite;
+}
+
+@keyframes live-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+.livefeed-close {
+  background: none;
+  border: none;
+  color: rgba(148, 163, 184, 0.4);
+  cursor: pointer;
+  font-size: 11px;
+  padding: 0;
+  line-height: 1;
+}
+
+.livefeed-close:hover { color: #e2e8f0; }
+
+/* ─── Proximity alert ────────────────────────────────────── */
+.livefeed-alert {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(74, 222, 128, 0.08);
+  border-bottom: 0.5px solid rgba(74, 222, 128, 0.15);
+  font-size: 10px;
+  color: #4ade80;
+  line-height: 1.5;
+}
+
+.livefeed-alert-icon { font-size: 14px; flex-shrink: 0; }
+
+/* ─── Tabs ───────────────────────────────────────────────── */
+.livefeed-tabs {
+  display: flex;
+  border-bottom: 0.5px solid rgba(56, 189, 248, 0.1);
+}
+
+.livefeed-tab {
+  flex: 1;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: rgba(148, 163, 184, 0.5);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.livefeed-tab:hover { color: #e2e8f0; }
+
+.livefeed-tab.active {
+  color: #38bdf8;
+  border-bottom-color: #38bdf8;
+}
+
+/* ─── Content ────────────────────────────────────────────── */
+.livefeed-content { padding: 0; }
+
+/* ─── ISS Video ──────────────────────────────────────────── */
+.livefeed-video-wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  background: #000;
+}
+
+.livefeed-iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ─── GOES Image ─────────────────────────────────────────── */
+.livefeed-goes-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 300px;
+  overflow: hidden;
+}
+
+.livefeed-goes-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s;
+}
+
+.livefeed-loading {
+  position: absolute;
+  font-size: 10px;
+  color: rgba(148, 163, 184, 0.4);
+  letter-spacing: 0.08em;
+}
+
+/* ─── Info rows ──────────────────────────────────────────── */
+.livefeed-info {
+  padding: 10px 16px 12px;
+  border-top: 0.5px solid rgba(56, 189, 248, 0.08);
+}
+
+.livefeed-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 5px;
+}
+
+.livefeed-info-key {
+  font-size: 9px;
+  color: rgba(148, 163, 184, 0.4);
+  letter-spacing: 0.1em;
+}
+
+.livefeed-info-val {
+  font-size: 11px;
+  color: #38bdf8;
+  letter-spacing: 0.04em;
+}
+
+.livefeed-info-val--nearby { color: #4ade80; }
+
+.livefeed-note {
+  font-size: 9px;
+  color: rgba(148, 163, 184, 0.25);
+  letter-spacing: 0.06em;
+  margin-top: 6px;
+  line-height: 1.5;
+}
